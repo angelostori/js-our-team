@@ -55,19 +55,23 @@ const teamMembers = [
   }
 ];
 
-const container = document.querySelector('.container')
+const row = document.querySelector('.row')
 
 for (let i = 0; i < teamMembers.length; i++) {
   const thisMember = teamMembers[i];
 
 
 const template = `
-  <div class='card '>
-    <img src='./assets/${thisMember.img}'></img>
-    <h2>${thisMember.name}</h2>
-    <p>${thisMember.email}</p>
+  <div class='card col-md-6 col-lg-4 bg-dark text-light d-flex flex-row p-0'>
+    <img src='./assets/${thisMember.img}'>
+    <div class='p-2'>
+      <h2 class='card-title'>${thisMember.name}</h2>
+      <p class='card-text'>${thisMember.role}</p>
+      <p class='text-primary card-text'>${thisMember.email}</p>
+    </div>
+    
   </div>
   `
-container.innerHTML += template
+row.innerHTML += template
 
 }
