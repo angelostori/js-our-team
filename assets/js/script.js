@@ -61,7 +61,7 @@ for (let i = 0; i < teamMembers.length; i++) {
   const thisMember = teamMembers[i];
 
 
-const template = `
+  const template = `
   <div class='col-md-12 col-lg-4'>
     <div class='card bg-dark text-light d-flex flex-row'>
       <img class='img-fluid' src='./assets/${thisMember.img}'>
@@ -73,7 +73,7 @@ const template = `
     </div>
   </div>
   `
-row.innerHTML += template
+  row.innerHTML += template
 }
 
 const userName = document.getElementById('name-field')
@@ -81,4 +81,36 @@ const userRole = document.getElementById('role-field')
 const userEmail = document.getElementById('email-field')
 const userImage = document.getElementById('img-field')
 const addMemberBtn = document.getElementById('add-member-btn')
+const form = document.getElementById('form')
 
+
+
+form.addEventListener('submit', function (event) {
+  event.preventDefault()
+
+  const nuovoUtente = {
+    name: userName.value,
+    role: userRole.value,
+    email: userEmail.value,
+    img: userImage.value
+  }
+
+  teamMembers.push(nuovoUtente)
+
+  const template = `
+  <div class='col-md-12 col-lg-4'>
+    <div class='card bg-dark text-light d-flex flex-row'>
+      <img class='img-fluid' src='./assets/${nuovoUtente.img}'>
+      <div class='p-2'>
+        <h2 class='card-title'>${nuovoUtente.name}</h2>
+        <p class='card-text'>${nuovoUtente.role}</p>
+        <p class='text-primary card-text'>${nuovoUtente.email}</p>
+      </div>
+    </div>
+  </div>
+  `
+  row.innerHTML += template
+
+  const inputs = form.querySelectorAll('input')
+  
+})
