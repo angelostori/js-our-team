@@ -54,3 +54,20 @@ const teamMembers = [
     img: "img/female3.png"
   }
 ];
+
+const container = document.querySelector('.container')
+
+for (let i = 0; i < teamMembers.length; i++) {
+  const thisMember = teamMembers[i];
+
+
+const template = `
+  <div class='card '>
+    <img src='./assets/${thisMember.img}'></img>
+    <h2>${thisMember.name}</h2>
+    <p>${thisMember.email}</p>
+  </div>
+  `
+container.innerHTML += template
+
+}
