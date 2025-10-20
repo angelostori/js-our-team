@@ -62,14 +62,15 @@ for (let i = 0; i < teamMembers.length; i++) {
 
 
 const template = `
-  <div class='card col-md-6 col-lg-4 bg-dark text-light d-flex flex-row p-0'>
-    <img src='./assets/${thisMember.img}'>
-    <div class='p-2'>
-      <h2 class='card-title'>${thisMember.name}</h2>
-      <p class='card-text'>${thisMember.role}</p>
-      <p class='text-primary card-text'>${thisMember.email}</p>
+  <div class='col-md-12 col-lg-4'>
+    <div class='card bg-dark text-light d-flex flex-row'>
+      <img src='./assets/${thisMember.img}'>
+      <div class='p-2'>
+        <h2 class='card-title'>${thisMember.name}</h2>
+        <p class='card-text'>${thisMember.role}</p>
+        <p class='text-primary card-text'>${thisMember.email}</p>
+      </div>
     </div>
-    
   </div>
   `
 row.innerHTML += template
