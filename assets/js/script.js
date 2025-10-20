@@ -64,7 +64,7 @@ for (let i = 0; i < teamMembers.length; i++) {
 const template = `
   <div class='col-md-12 col-lg-4'>
     <div class='card bg-dark text-light d-flex flex-row'>
-      <img src='./assets/${thisMember.img}'>
+      <img class='img-fluid' src='./assets/${thisMember.img}'>
       <div class='p-2'>
         <h2 class='card-title'>${thisMember.name}</h2>
         <p class='card-text'>${thisMember.role}</p>
@@ -74,5 +74,11 @@ const template = `
   </div>
   `
 row.innerHTML += template
-
 }
+
+const userName = document.getElementById('name-field')
+const userRole = document.getElementById('role-field')
+const userEmail = document.getElementById('email-field')
+const userImage = document.getElementById('img-field')
+const addMemberBtn = document.getElementById('add-member-btn')
+
