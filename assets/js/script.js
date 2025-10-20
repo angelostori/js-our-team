@@ -55,26 +55,37 @@ const teamMembers = [
   }
 ];
 
-const row = document.querySelector('.row')
-
-for (let i = 0; i < teamMembers.length; i++) {
-  const thisMember = teamMembers[i];
-
-
-  const template = `
-  <div class='col-md-12 col-lg-4'>
-    <div class='card bg-dark text-light d-flex flex-row'>
-      <img class='img-fluid' src='./assets/${thisMember.img}'>
-      <div class='p-2'>
-        <h2 class='card-title'>${thisMember.name}</h2>
-        <p class='card-text'>${thisMember.role}</p>
-        <p class='text-primary card-text'>${thisMember.email}</p>
+function createCardTemplate(member) {
+  return `
+    <div class='col-md-12 col-lg-4'>
+      <div class='card bg-dark text-light d-flex flex-row'>
+        <img class='img-fluid' src='./assets/${member.img}'>
+        <div class='p-2'>
+          <h2 class='card-title'>${member.name}</h2>
+          <p class='card-text'>${member.role}</p>
+          <p class='text-primary card-text'>${member.email}</p>
+        </div>
       </div>
     </div>
-  </div>
-  `
-  row.innerHTML += template
+  `;
 }
+
+function addCardToDOM(member) {
+  const row = document.querySelector('.row');
+  row.innerHTML += createCardTemplate(member);
+}
+
+function displayMembers() {
+  const row = document.querySelector('.row')
+
+  for (let i = 0; i < teamMembers.length; i++) {
+    const thisMember = teamMembers[i];
+
+    addCardToDOM(thisMember)
+  }
+}
+
+displayMembers()
 
 const userName = document.getElementById('name-field')
 const userRole = document.getElementById('role-field')
@@ -83,6 +94,12 @@ const userImage = document.getElementById('img-field')
 const addMemberBtn = document.getElementById('add-member-btn')
 const form = document.getElementById('form')
 
+function clearFormInputs(form) {
+  const inputs = form.querySelectorAll('input');
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].value = '';
+  }
+}
 
 
 form.addEventListener('submit', function (event) {
@@ -95,22 +112,7 @@ form.addEventListener('submit', function (event) {
     img: userImage.value
   }
 
-  teamMembers.push(nuovoUtente)
-
-  const template = `
-  <div class='col-md-12 col-lg-4'>
-    <div class='card bg-dark text-light d-flex flex-row'>
-      <img class='img-fluid' src='./assets/${nuovoUtente.img}'>
-      <div class='p-2'>
-        <h2 class='card-title'>${nuovoUtente.name}</h2>
-        <p class='card-text'>${nuovoUtente.role}</p>
-        <p class='text-primary card-text'>${nuovoUtente.email}</p>
-      </div>
-    </div>
-  </div>
-  `
-  row.innerHTML += template
-
-  const inputs = form.querySelectorAll('input')
-  
+  teamMembers.push(nuovoUtente);
+  addCardToDOM(nuovoUtente);
+  clearFormInputs(form);
 })
